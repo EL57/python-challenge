@@ -19,17 +19,12 @@ with open(pybank_csv, 'r') as csvfile:
 
     # Split the data on commas
     csvreader = csv.reader(csvfile, delimiter=',')
-    writer = csv.writer(open('pybankNew.csv', 'w'))
+    #writer = csv.writer(open('pybankNew.csv', 'w'))
   
 
     #Gets the header of the file
     header = next(csvreader)
     bank_data = list(csvreader)
-    
-    #Add new header for my column to get average change
-    header.append('Change')
-    writer.writerow(header)
-    
     
     #Printing the header so I can see if the 'Change' column is there
     #print(header)
@@ -54,7 +49,7 @@ with open(pybank_csv, 'r') as csvfile:
     #Creating a list from the bank_data to get the average of the price changes
     new = [int(bank_data[i+1][1]) - int(bank_data[i][1]) for i in range(len(bank_data) - 1)]
     row.append(new)
-    writer.writerow(new)
+    
     
     #Inserting a zero in the first row to make the column even for future appends
     new.insert(0,0)
@@ -106,9 +101,3 @@ with open("Summary.txt", "w") as summary:
     summary.write(f"Greatest Decrease in Profits: {mi2} (${mi})\n")
     summary.write("```")
    
-
-   
-    
-    
-    
-    
